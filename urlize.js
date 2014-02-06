@@ -274,8 +274,8 @@ var urlize = (function () {
             trimmed = htmlescape(trimmed, options);
           }
           sclass = '';
-          if (options.class) {
-              sclass = ' class="' + options.class + '"';
+          if (options.classattr) {
+              sclass = ' class="' + options.classattr + '"';
           }
           middle = '<a href="' + url + '"' + nofollow_attr + target_attr + sclass + '>' + trimmed + '</a>';
           words[i] = lead + middle + trail;
