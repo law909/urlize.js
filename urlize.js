@@ -146,11 +146,11 @@ var urlize = (function () {
   // Quotes a URL if it isn't already quoted.
   function smart_urlquote(url) {
     // XXX: Not handling IDN.
-    // 
+    //
     // Convert protocol to lowercase.
     var colonIndex = url.indexOf(':');
     url = url.substring(0, colonIndex).toLowerCase() + url.substring(colonIndex);
-    // 
+    //
     // An URL is considered unquoted if it contains no % characters or
     // contains a % not followed by two hexadecimal digits.
     if (url.indexOf('%') == -1 || url.match(unquoted_percents_re)) {
@@ -163,7 +163,7 @@ var urlize = (function () {
   var trailing_punctuation_django = ['.', ',', ':', ';'];
   var trailing_punctuation_improved = ['.', ',', ':', ';', '.)'];
   var wrapping_punctuation_django = [['(', ')'], ['<', '>'], ['&lt;', '&gt;']];
-  var wrapping_punctuation_improved = [['(', ')'], ['<', '>'], ['&lt;', '&gt;'], 
+  var wrapping_punctuation_improved = [['(', ')'], ['<', '>'], ['&lt;', '&gt;'],
   				     ['“', '”'], ['‘', '’']];
   var word_split_re_django = /(\s+)/;
   var word_split_re_improved = /([\s<>"]+)/;
@@ -273,7 +273,11 @@ var urlize = (function () {
             url = urlescape(url);
             trimmed = htmlescape(trimmed, options);
           }
-          middle = '<a href="' + url + '"' + nofollow_attr + target_attr + '>' + trimmed + '</a>';
+          sclass = '';
+          if (options.class) {
+              sclass = ' class="' + options.class + '"';
+          }
+          middle = '<a href="' + url + '"' + nofollow_attr + target_attr + sclass + '>' + trimmed + '</a>';
           words[i] = lead + middle + trail;
         } else {
           if (safe_input) {
